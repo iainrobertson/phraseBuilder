@@ -1,0 +1,2 @@
+# Ruby on Rails : phrase builder application
+This is a dictionary building application.
