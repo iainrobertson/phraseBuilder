@@ -15,7 +15,6 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    flash.now[:error] = 'Session terminated'
     sign_out
     redirect_to root_url
   end
