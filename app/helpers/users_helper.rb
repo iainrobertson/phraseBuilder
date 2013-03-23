@@ -8,4 +8,12 @@ module UsersHelper
     image_tag(gravatar_url, alt: user.name, class: "gravatar")
   end
 
+  def status_for(user)
+    if @user.admin? 
+      "Administrator"
+    else
+      ""
+    end
+  end
+
 end

@@ -4,8 +4,9 @@
     <section>
       <h1>
         <%= gravatar_for @user %>
-        <%= @user.name %>
+        <%= @user.name %> 
       </h1>
     </section>
+    <pre class="debug_dump"><%= status_for @user %></pre>
   </aside>
 </div>
