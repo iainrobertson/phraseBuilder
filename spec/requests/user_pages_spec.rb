@@ -59,11 +59,19 @@ describe "UserPages" do
   describe "profile page" do
     # Code to make a user variable
     let(:user) { FactoryGirl.create(:user) }
+    let!(:m1) { FactoryGirl.create(:phrase, author: user, phrase_text: "good") }
+    let!(:m2) { FactoryGirl.create(:phrase, author: user, phrase_text: "bad") }
 
     before { visit user_path(user) }
 
     it { should have_selector('h1',    text: user.name) }
     it { should have_selector('title', text: user.name) }
+
+    describe "phrase" do
+      it { should have_content(m1.phrase_text) }
+      it { should have_content(m2.phrase_text) }
+      it { should have_content(user.authoredPhrases.count) }
+    end
   end
 
   describe "signup" do

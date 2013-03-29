@@ -1,0 +1,102 @@
+
+
+
+ngram, {example}                        => { phrase, {generalisedPhrase}}
+
+
+"bad apple",                            => [bad, adj] [apple, noun]  noun_phrase
+
+{
+  "he is the bad apple in the class"    p=$sp $conj(STD_TENSES, [be, verb], $p) the [bad apple, idiom] in $defart $group_badapple
+                                        $group_badapple {[class], [group], [gang], [team], [bunch] }
+                                        
+  "he threw out the bad apple"          p=$sp $conj(STD_TENSES, [$throw, verb], $p) out $art [bad apple, ngram]
+                                        $throw = throw {out, away}
+                                                 chuck {out, away}
+
+}
+
+
+
+1. Input an ngram (phrase)
+    
+    Text box for ngram input - phrase(s)
+    Muliple lines, can be thousands by pasting
+    
+    (abstract)Phrase:
+    ----------------
+    string lang
+    string pos
+    Phrase sense
+    string register               IDIOM | FORMAL | INFORMAL | COLLOQUIAL | FAMILIAR | VULGAR 
+    string properties             elisionRule, contractionRule, agreementRule, pluralRule, gender, person etc, plural, invariant 
+    int    ngramFreq
+    int    difficulty
+    int    level
+
+    string phraseClass            ENTRY | HEADWORD_ENTRY | INFLECTION_ENTRY   ... RULE??
+
+    (singlePart)Phrase
+    string text
+
+    (multiPart)Phrase
+    Phrase [parts]
+
+    PhraseBuilderEntries:
+    string tagStatus              UNTAGGED | PARTIALLY_TAGGED | TAGGED | LITERAL
+    string reviewStatus           NEW | MODIFIED => ACCEPTED => SUPERCEDED | REJECTED
+    Phrase supercededByPhrase     (for version tracking)
+    User   addedByUser
+    User   lastUpdatedByUser
+
+
+2. Identify / Match parts, define new parts if reqd   => taggedPhrase
+3. add an example (phrase) .. repeat 2 => taggedPhrase
+4. generalise a phrase =>  varPhrase
+
+
+
+
+
+  Phrase
+    - string status
+    - lang
+    - phrase priorVersion
+    has_many :phraseParts
+
+  PhrasePart
+    - pos
+    - prop
+    - abstract partDefn
+    - integer  position
+    -
+
+
+
+
+  TU_input:  
+     Language1        Language2      TUpos   [status version  timestamp  comment user]
+     Text1            Text2
+     posArray1        posArray2
+     properties1      properties2
+
+     {examplePhrase1} {examplePhrase2}
+
+
+  SI:       desc | categories | set of {example_phrase + test}
+  Phrase:   {tag,part} | defn.en | defn.fr ..
+  Test:     testType (tag ..)
+  
+  
+
+   Word     : Text      | PoS | Prop
+   Phrase   : [Word]    | PoS | Prop
+
+  
+  
+  [bad]             adj
+  [bad apple]       idiomatic  noun-compound
+  [bad] [news]      expr       noun-phrase          I have some bad news for you
+  
+  
+  

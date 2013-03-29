@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @phrases = @user.authoredPhrases.paginate(page: params[:page])
   end
 
   def index

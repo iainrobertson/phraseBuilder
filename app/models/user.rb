@@ -1,7 +1,9 @@
 class User < ActiveRecord::Base
-  attr_accessible :name, :email, :password, :password_confirmation, :lastlogin, :remember_token
-  
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_token
   has_secure_password
+
+  has_many :authoredPhrases, class_name: "Phrase", foreign_key: "author_id"  
+  has_many :editedPhrases, class_name: "Phrase", foreign_key: "editor_id"
 
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token

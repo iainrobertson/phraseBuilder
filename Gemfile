@@ -12,6 +12,8 @@ group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails', '2.11.0'
   gem 'factory_girl_rails', '4.1.0'
+  #gem 'ruby-debug19'
+  #gem 'ruby-debug19', :require => 'ruby-debug'
 end
 
 

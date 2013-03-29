@@ -11,7 +11,32 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130322174512) do
+ActiveRecord::Schema.define(:version => 20130328102410) do
+
+  create_table "phrases", :force => true do |t|
+    t.string   "lang"
+    t.integer  "pos_id"
+    t.string   "register"
+    t.string   "properties"
+    t.integer  "frequency"
+    t.integer  "level"
+    t.string   "phrase_class"
+    t.string   "phrase_text"
+    t.integer  "author_id"
+    t.integer  "editor_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "phrases", ["author_id", "created_at"], :name => "index_phrases_on_author_id_and_created_at"
+  add_index "phrases", ["pos_id"], :name => "index_phrases_on_pos_id"
+
+  create_table "pos", :force => true do |t|
+    t.string   "pos_detail"
+    t.string   "pos_class"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name"

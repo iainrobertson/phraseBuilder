@@ -1,0 +1,65 @@
+
+rails new phraseApp --skip-test-unit
+
+cd phraseApp
+
+bundle update
+bundle install --without production
+
+rails generate rspec:install
+
+git init
+git add .
+git commit -m "Initial commit"
+
+<create suitable README.md>
+# Ruby on Rails: Phrase Builder Application
+
+git remote add origin git@github.com:iainrobertson/phraseBuilder.git
+git push -u origin master
+
+heroku login
+heroku create
+git push heroku master
+git add Gemfile                   .. is this necessary?
+git commit -m "fix gemfile"
+
+git push heroku master
+heroku rename phraseBuilder
+
+
+git checkout -b static-pages
+
+rails generate controller StaticPages home help --no-test-framework
+rails generate integration_test static_pages
+
+.. fix up lots of files as per tutorial Sec3 ..
+
+git add .
+git commit -m "Finish static pages"
+git checkout master
+git merge static-pages
+
+
+
+git push
+git push heroku
+
+rails generate controller Users new --no-test-framework
+rails generate integration_test user_pages
+
+
+
+chapters to 9
+
+Chapter 10 - start own code with:
+
+rails generate model Pos pos_detail:string pos_class:string
+
+
+
+
+
+
+
+

@@ -16,6 +16,8 @@ describe User do
   it { should respond_to(:remember_token) }
   it { should respond_to(:admin) }
   it { should respond_to(:authenticate) }
+  it { should respond_to(:authoredPhrases) }
+  it { should respond_to(:editedPhrases) }
 
   it { should be_valid }
   it { should_not be_admin }
@@ -97,4 +99,19 @@ describe User do
     its(:remember_token) { should_not be_blank }
   end
   
+  describe "phrase associations" do
+
+    before { @user.save }
+    let!(:older_phrase) do 
+      FactoryGirl.create(:phrase, author: @user, created_at: 1.day.ago)
+    end
+    let!(:newer_phrase) do
+      FactoryGirl.create(:phrase, author: @user, created_at: 1.hour.ago)
+    end
+
+    it "should have the right phrases in the right order" do
+      @user.authoredPhrases.should == [newer_phrase, older_phrase]
+    end
+  end
+
 end
