@@ -1,3 +1,9 @@
 	<li>
 		<span class="content"><%= phrase.phrase_text %></span>
+		<span class="timestamp">Posted <%= time_ago_in_words(phrase.created_at) %> ago.</span>
+		<% if current_user?(phrase.author) %>
+  		  <%= link_to "delete", phrase, method: :delete,
+		  data: { confirm: "Please confirm phrase deletion .." },
+		  title: phrase.phrase_text %>
+		<% end %>
 	</li>

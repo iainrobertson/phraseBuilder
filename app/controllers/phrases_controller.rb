@@ -1,5 +1,7 @@
 class PhrasesController < ApplicationController
-  before_filter :signed_in_user
+  
+  before_filter :signed_in_user, only: [:create, :destroy]
+  before_filter :correct_user,   only: :destroy
 
   def index
     @allphrases = Phrase.paginate(page: params[:page])
@@ -22,6 +24,15 @@ class PhrasesController < ApplicationController
   end
 
   def destroy
+    @phrase.destroy
+    redirect_to root_url
   end
+
+  private
+
+    def correct_user
+      @phrase = current_user.authoredPhrases.find_by_id(params[:id])
+      redirect_to root_url if @phrase.nil?
+    end
 
 end
