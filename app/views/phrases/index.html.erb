@@ -1,0 +1,10 @@
+<% provide(:title, 'All my Phrases') %>
+<h1>All Phrases</h1>
+
+<%= will_paginate @allphrases %>
+
+<ul class="phrases">
+  <%= render @allphrases %>
+</ul>
+
+<%= will_paginate @allphrases %>

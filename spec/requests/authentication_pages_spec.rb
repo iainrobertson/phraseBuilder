@@ -79,6 +79,19 @@ describe "Authentication" do
         end
       end
 
+      describe "in the Phrases controller" do
+
+        describe "submitting to the create action" do
+          before { post phrases_path }
+          specify { response.should redirect_to(signin_path) }
+        end
+
+        describe "submitting to the destroy action" do
+          before { delete phrase_path(FactoryGirl.create(:phrase)) }
+          specify { response.should redirect_to(signin_path) }
+        end
+      end
+
     end
 
     describe "as wrong user" do

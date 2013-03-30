@@ -5,7 +5,7 @@ class Phrase < ActiveRecord::Base
   belongs_to :editor, class_name: "User", foreign_key: :editor_id
 
   validates :author_id, presence: true
-  validates :editor_id, presence: true
+  #validates :editor_id, presence: true
   validates :phrase_text, presence: true, length: { maximum: 255 }
 
   default_scope order: 'phrases.created_at DESC'

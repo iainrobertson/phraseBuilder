@@ -12,10 +12,11 @@
   <div class="span8">
     <h3>Authored Phrases (<%= @user.authoredPhrases.count %>)</h3>
     <% if @user.authoredPhrases.any? %>
-      <ol class="phrases">
-        <%= render @user.authoredPhrases %>
+      <%= will_paginate @userphrases %>
+      <ol class="xxphrases">
+        <%= render @userphrases %>
       </ol>
-      <%= will_paginate @phrases %>
+      <%= will_paginate @userphrases %>
     <% end %>
   </div>
 </div>

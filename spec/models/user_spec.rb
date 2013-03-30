@@ -18,6 +18,7 @@ describe User do
   it { should respond_to(:authenticate) }
   it { should respond_to(:authoredPhrases) }
   it { should respond_to(:editedPhrases) }
+  it { should respond_to(:feed) }
 
   it { should be_valid }
   it { should_not be_admin }
@@ -112,6 +113,17 @@ describe User do
     it "should have the right phrases in the right order" do
       @user.authoredPhrases.should == [newer_phrase, older_phrase]
     end
+
+    describe "status" do
+      let(:unfollowed_post) do
+        FactoryGirl.create(:micropost, user: FactoryGirl.create(:user))
+      end
+
+      its(:feed) { should include(newer_phrase) }
+      its(:feed) { should include(older_phrase) }
+      its(:feed) { should_not include(unfollowed_phrase) }
+    end
+
   end
 
 end
