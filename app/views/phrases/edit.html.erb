@@ -1,0 +1,21 @@
+<% provide(:title, "Edit PHRASE") %> 
+<h1>Define Phrase</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@phrase) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :phrase_text %>
+      <%= f.text_field :phrase_text %>
+
+      <%= f.label :frequency %>
+      <%= f.number_field :frequency %>
+
+      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+    <% end %>
+
+    <small>Authored by <%= @user.name %></small>
+    <%= gravatar_for @user %>
+  </div>
+</div>
